@@ -1,26 +1,24 @@
-export default class JatekElem {
-    constructor(index, initialState) {
-        this.index = index; // Pozíció a játéktérben
-        this.allapot = kezdetiAllapot; // Kezdeti állapot
-        this.elem = document.createElement("div");
-        this.elem.classList.add("lampa");
-        this.frissitSzint(); // Háttérszín frissítése
-        this.elem.addEventListener("click", () => this.kattintas());
+export class JatekElem {
+    #adat;
+    #index;
+    constructor(adat, index, szuloElem) {
+        this.#adat = adat;
+        this.#index = index;
+        this.szuloElem = szuloElem;
+        console.log(this.szuloElem)
+        this.megjelenit()
+        this.esemenyKezelo()
     }
-
-    frissitSzint() {
-        this.elem.style.backgroundColor = this.allapot ? "yellow" : "gray";
+    megjelenit(){
+        let html=`<div class="jatekter">${this.#adat}</div>`
+        this.szuloElem.insertAdjacentHTML("beforeend",html)
     }
-
-    kattintas() {
-        const esemeny = new CustomEvent("allapotValtozas", {
-            detail: { index: this.index }
-        });
-        window.dispatchEvent(esemeny); // Esemény küldése
-    }
-
-    allapotValtas() {
-        this.allapot = !this.allapot;
-        this.frissitSzint(); // Szín frissítése állapot alapján
+    esemenyKezelo(){
+        this.elem = document.querySelector(".jatekter:first-child")
+        this.elem.addEventListener("click",()=> {
+            console.log(this.#index)
+            const ce = new CustomEvent("kattint",{detail:this.#index})
+            window.dispatchEvent(ce)
+        })
     }
 }
