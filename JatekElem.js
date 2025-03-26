@@ -1,24 +1,27 @@
-export class JatekElem {
-    #adat;
-    #index;
+// JatekElem.js
+export default class JatekElem {
     constructor(adat, index, szuloElem) {
-        this.#adat = adat;
-        this.#index = index;
+        this.adat = adat;
+        this.index = index;
         this.szuloElem = szuloElem;
-        console.log(this.szuloElem)
-        this.megjelenit()
-        this.esemenyKezelo()
+        this.elem = document.createElement("div");
+        this.elem.classList.add("lampa");
+        this.megjelenit();
+        this.esemenyKezelo();
     }
-    megjelenit(){
-        let html=`<div class="jatekter">${this.#adat}</div>`
-        this.szuloElem.insertAdjacentHTML("beforeend",html)
+
+    megjelenit() {
+        this.elem.style.backgroundColor = this.adat ? "yellow" : "green";
+        this.szuloElem.appendChild(this.elem);
     }
-    esemenyKezelo(){
-        this.elem = document.querySelector(".jatekter:first-child")
-        this.elem.addEventListener("click",()=> {
-            console.log(this.#index)
-            const ce = new CustomEvent("kattint",{detail:this.#index})
-            window.dispatchEvent(ce)
-        })
+
+    esemenyKezelo() {
+        this.elem.addEventListener("click", () => {
+            window.dispatchEvent(
+                new CustomEvent("kattint", {
+                    detail: this.index 
+                }
+            ));
+        });
     }
 }
