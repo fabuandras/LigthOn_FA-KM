@@ -1,5 +1,5 @@
 import JatekElem from "./JatekElem.js";
 import Jatekter from "./Jatekter.js";
 
-new Jatekter()
+new JatekTer(9);
 new JatekElem()
