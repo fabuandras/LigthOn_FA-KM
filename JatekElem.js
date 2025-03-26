@@ -1,4 +1,4 @@
-class Lampa {
+export default class JatekElem {
     constructor(index, initialState) {
         this.index = index; // Pozíció a játéktérben
         this.allapot = kezdetiAllapot; // Kezdeti állapot

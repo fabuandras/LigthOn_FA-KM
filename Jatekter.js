@@ -10,6 +10,12 @@ export default class JatekTer {
 
     megjelenit() {
         this.szuloElem.innerHTML = "";
-        
+        this.#lista.forEach((allapot, index) => {
+            new JatekElem(
+                allapot,
+                index,
+                this.szuloElem
+            );
+        });
     }
 }
