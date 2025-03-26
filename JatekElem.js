@@ -1,10 +1,10 @@
 export default class JatekElem {
     constructor(index, initialState) {
-        this.index = index; // Pozíció a játéktérben
-        this.allapot = kezdetiAllapot; // Kezdeti állapot
+        this.index = index;
+        this.allapot = kezdetiAllapot;
         this.elem = document.createElement("div");
         this.elem.classList.add("lampa");
-        this.frissitSzint(); // Háttérszín frissítése
+        this.frissitSzint();
         this.elem.addEventListener("click", () => this.kattintas());
     }
 
@@ -16,11 +16,11 @@ export default class JatekElem {
         const esemeny = new CustomEvent("allapotValtozas", {
             detail: { index: this.index }
         });
-        window.dispatchEvent(esemeny); // Esemény küldése
+        window.dispatchEvent(esemeny);
     }
 
     allapotValtas() {
         this.allapot = !this.allapot;
-        this.frissitSzint(); // Szín frissítése állapot alapján
+        this.frissitSzint();
     }
 }
