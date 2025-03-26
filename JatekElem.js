@@ -1,24 +1,25 @@
-export class JatekElem {
-    #adat;
-    #index;
-    constructor(adat, index, szuloElem) {
-        this.#adat = adat;
-        this.#index = index;
+export class Lampa {
+    constructor(index, szuloElem) {
+        this.adat = index;
+        this.allapot = Math.random() < 0.2;
         this.szuloElem = szuloElem;
-        console.log(this.szuloElem)
-        this.megjelenit()
-        this.esemenyKezelo()
+
+        this.htmlElem = document.createElement("div");
+        this.htmlElem.className = "lampa";
+        this.szuloElem.appendChild(this.htmlElem);
+
+        this.megjelenit();
+        this.esemenyKezelo();
     }
-    megjelenit(){
-        let html=`<div class="jatekter">${this.#adat}</div>`
-        this.szuloElem.insertAdjacentHTML("beforeend",html)
+
+    megjelenit() {
+        this.htmlElem.style.backgroundColor = this.allapot ? "yellow" : "gray";
     }
-    esemenyKezelo(){
-        this.elem = document.querySelector(".jatekter:first-child")
-        this.elem.addEventListener("click",()=> {
-            console.log(this.#index)
-            const ce = new CustomEvent("kattint",{detail:this.#index})
-            window.dispatchEvent(ce)
-        })
+
+    esemenyKezelo() {
+        this.htmlElem.addEventListener("click", () => {
+            const esemeny = new CustomEvent("lampaKattintas", { detail: this.adat });
+            window.dispatchEvent(esemeny);
+        });
     }
 }
