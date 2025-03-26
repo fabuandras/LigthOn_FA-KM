@@ -12,10 +12,10 @@ export default class Jatekter {
     ujJatek() {
         this.#lista = [];
         for (let i = 0; i < 9; i++) {
-            this.#lista.push(true); // Minden lámpa fel van kapcsolva
+            this.#lista.push(true); // Minden lámpa fel van kapcsolva, így indul a játék
         }
         this.megjelenit();
-        this.infoBox.frissit(this.#lista);
+        //this.infoBox.frissit(this.#lista);
     }
 
     esemenykezelo() {
@@ -23,7 +23,7 @@ export default class Jatekter {
             let index = event.detail;
             this.#lista[index] = !this.#lista[index];
             this.megjelenit();
-            this.infoBox.frissit(this.#lista);
+            //this.infoBox.frissit(this.#lista);
         });
     }
 

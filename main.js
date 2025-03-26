@@ -1,5 +1,9 @@
-import JatekElem from "./JatekElem.js";
 import Jatekter from "./Jatekter.js";
+import InfoBox from "./InfoBox.js";
 
-new JatekTer(9);
-new JatekElem()
+const jatekterElem = document.querySelector(".jatekter");
+const jatekter = new Jatekter(jatekterElem);
+    
+document.querySelector(".ujJatek").addEventListener("click", () => {
+    jatekter.ujJatek();
+});
